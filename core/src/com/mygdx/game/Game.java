@@ -21,7 +21,7 @@ public class Game extends ApplicationAdapter {
 	Vector2 speed;
 	Sprite sprite;
 	boolean fullscreen;
-
+	boolean changeOfSpeed;
 	
 	@Override
 	public void create () {
@@ -29,7 +29,7 @@ public class Game extends ApplicationAdapter {
 		img = new Texture("GodOfWar.jpg");
 		fullscreen = false;
 		//Gdx.graphics.setDisplayMode(1280, 720, fullscreen);
-		rect = new Rectangle(100, 100, 100, 200);
+		rect = new Rectangle(100, 100, 150, 200);
 		speed = new Vector2(10, 10);
 	}
 
@@ -37,6 +37,18 @@ public class Game extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+			if(speed.x == 10 && !changeOfSpeed){
+				speed.x *= 9;
+				speed.y *= 9;
+				changeOfSpeed = true;
+			}else if (speed.x != 10 && changeOfSpeed){
+				speed.x = 10;
+				speed.y = 10;
+				changeOfSpeed = false;
+			}
+		}
 
 		if (rect.getY() + rect.getHeight() < Gdx.graphics.getHeight()) {
 			if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
