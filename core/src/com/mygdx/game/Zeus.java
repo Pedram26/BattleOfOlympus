@@ -14,12 +14,12 @@ public class Zeus {
     Rectangle zeus;
     Texture img;
     Vector2 speed;
-
+    Boolean changeOfSpeed;
 
     public Zeus(){
-        zeus = new Rectangle(50, 50, 100, 150);
+        zeus = new Rectangle(50, 50, 110, 170);
         img = new Texture("zeus.jpg");
-        speed = new Vector2(10, 10);
+        speed = new Vector2(9, 9);
     }
 
     public void render(SpriteBatch batch) {
