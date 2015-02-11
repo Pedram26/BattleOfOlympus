@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
  * Created by ppourdavood on 2/6/2015.
  */
 public class Zeus {
-    Rectangle zeus;
+    public Rectangle zeus;
     Texture img;
     Vector2 speed;
     Boolean changeOfSpeed;

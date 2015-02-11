@@ -36,12 +36,19 @@ public class Game extends ApplicationAdapter {
 		blade = new Blade();
 	}
 
+	public boolean isCollided(Rectangle rect) {
+		Gdx.app.log("Collision Detected", "" + zeus.zeus.overlaps(rect));
+		return rect.overlaps(zeus.zeus);
+	}
+
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		rect.overlaps(rect);
+		if(isCollided(rect)){
+			
+		}
 
 
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){

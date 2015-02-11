@@ -18,13 +18,13 @@ public class Blade {
     Texture img;
 
     public Blade(){
-        blade = new Rectangle(95, 165, 80, 120);
+        blade = new Rectangle(350, 350, 80, 120);
         img = new Texture("blade.png");
         speed = new Vector2(10 , 10);
     }
 
     public void render(SpriteBatch batch){
-
+/*
       if(Gdx.input.isKeyPressed(Input.Keys.I)){
           blade.setY(blade.getY() + speed.y);
       }
@@ -40,7 +40,7 @@ public class Blade {
       if(Gdx.input.isKeyPressed(Input.Keys.J)){
           blade.setX(blade.getX() - speed.x);
       }
-
+*/
         batch.draw(img, blade.getX(), blade.getY(), blade.getWidth(), blade.getHeight());
     }
 }
