@@ -24,23 +24,6 @@ public class Blade {
     }
 
     public void render(SpriteBatch batch){
-/*
-      if(Gdx.input.isKeyPressed(Input.Keys.I)){
-          blade.setY(blade.getY() + speed.y);
-      }
-
-      if(Gdx.input.isKeyPressed(Input.Keys.K)){
-          blade.setY(blade.getY() - speed.y);
-      }
-
-      if(Gdx.input.isKeyPressed(Input.Keys.L)){
-          blade.setX(blade.getX() + speed.x);
-      }
-
-      if(Gdx.input.isKeyPressed(Input.Keys.J)){
-          blade.setX(blade.getX() - speed.x);
-      }
-*/
         batch.draw(img, blade.getX(), blade.getY(), blade.getWidth(), blade.getHeight());
     }
 }

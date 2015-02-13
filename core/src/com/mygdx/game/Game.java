@@ -23,6 +23,7 @@ public class Game extends ApplicationAdapter {
 	boolean changeOfSpeed;
 	Zeus zeus;
 	Blade blade;
+	Bullet bullet;
 
 	@Override
 	public void create () {
@@ -33,24 +34,32 @@ public class Game extends ApplicationAdapter {
 		rect = new Rectangle(650, 50, 120, 180);
 		speed = new Vector2(9, 9);
 		zeus = new Zeus();
+		bullet = new Bullet();
+		bullet.bullet = new Rectangle(rect.getX(),rect.getY(),zeus.zeus.getWidth(), 70);
 		blade = new Blade();
-	}
-
-	public boolean isCollided(Rectangle rect) {
-		Gdx.app.log("Collision Detected", "" + zeus.zeus.overlaps(rect));
-		return rect.overlaps(zeus.zeus);
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		if(isCollided(rect)){
-			
+		bullet.bullet.setX(rect.getX());
+		bullet.bullet.setY(rect.getY());
+		if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
+			bullet.bullet.setX(bullet.speed.x -= 10);
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+			bullet.bullet.setX(bullet.speed.x += 10);
 		}
 
-
+		if(rect.getX() <= zeus.zeus.getX()){
+			speed.x = 0;
+			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+				speed.x = 9;
+				rect.setX(rect.getX() + speed.x);
+				//speed.x++;
+			}
+		}
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 			if(speed.x == 9 && !changeOfSpeed){
 				speed.x *= 8;
@@ -92,8 +101,10 @@ public class Game extends ApplicationAdapter {
 		}
 
 		batch.begin();
+		bullet.render(batch);
 		zeus.render(batch);
 		blade.render(batch);
+		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		batch.end();
 	}
