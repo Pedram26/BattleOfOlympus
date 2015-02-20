@@ -7,20 +7,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-/**
- * Created by ppourdavood on 2/10/2015.
- */
-public class Bullet {
-    Vector2 speed;
-    Texture img;
-    public Rectangle bullet;
+import java.awt.*;
 
-    public Bullet(){
-        img = new Texture("bullet.jpg");
-        speed = new Vector2(7,7);
+/**
+ * Created by ppourdavood on 2/20/2015.
+ */
+public class HealthBar {
+    Rectangle health;
+    Texture img;
+
+    public HealthBar(){
+        health = new Rectangle(50 , 50 , 200, 100);
+        img = new Texture("healthBar.jpg");
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(img, bullet.getX(), bullet.getY(), bullet.getWidth(), bullet.getHeight());
+        batch.draw(img, health.getX(), health.getY(), health.getWidth(), health.getHeight());
     }
 }
+

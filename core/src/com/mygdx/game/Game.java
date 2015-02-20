@@ -24,6 +24,7 @@ public class Game extends ApplicationAdapter {
 	Zeus zeus;
 	Blade blade;
 	Bullet bullet;
+	HealthBar healthBar;
 
 	@Override
 	public void create () {
@@ -35,8 +36,9 @@ public class Game extends ApplicationAdapter {
 		speed = new Vector2(9, 9);
 		zeus = new Zeus();
 		bullet = new Bullet();
-		bullet.bullet = new Rectangle(rect.getX(),rect.getY(),zeus.zeus.getWidth(), 70);
+		bullet.bullet = new Rectangle(500,50,zeus.zeus.getWidth(), 70);
 		blade = new Blade();
+		healthBar = new HealthBar();
 	}
 
 	@Override
@@ -45,6 +47,7 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		bullet.bullet.setX(rect.getX());
 		bullet.bullet.setY(rect.getY());
+
 		if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
 			bullet.bullet.setX(bullet.speed.x -= 10);
 		}
@@ -104,6 +107,7 @@ public class Game extends ApplicationAdapter {
 		bullet.render(batch);
 		zeus.render(batch);
 		blade.render(batch);
+		healthBar.render(batch);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		batch.end();
