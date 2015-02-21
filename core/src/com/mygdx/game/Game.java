@@ -25,11 +25,12 @@ public class Game extends ApplicationAdapter {
 	Blade blade;
 	Bullet bullet;
 	HealthBar healthBar;
+	HealthBar healthBar2;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("GodOfWar.jpg");
+		img = new Texture("GodOfWar.png");
 		fullscreen = false;
 		//Gdx.graphics.setDisplayMode(1280, 720, fullscreen);
 		rect = new Rectangle(650, 50, 120, 180);
@@ -39,6 +40,8 @@ public class Game extends ApplicationAdapter {
 		bullet.bullet = new Rectangle(500,50,zeus.zeus.getWidth(), 70);
 		blade = new Blade();
 		healthBar = new HealthBar();
+		healthBar2 = new HealthBar();
+
 	}
 
 	@Override
@@ -107,6 +110,7 @@ public class Game extends ApplicationAdapter {
 		bullet.render(batch);
 		zeus.render(batch);
 		blade.render(batch);
+		healthBar2.render(batch);
 		healthBar.render(batch);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
