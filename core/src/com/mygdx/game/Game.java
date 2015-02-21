@@ -5,12 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-import static com.badlogic.gdx.math.Intersector.intersectRectangles;
 
 
 public class Game extends ApplicationAdapter {
@@ -18,8 +16,6 @@ public class Game extends ApplicationAdapter {
 	Texture img;
 	Rectangle rect;
 	Vector2 speed;
-	Sprite sprite;
-	boolean fullscreen;
 	boolean changeOfSpeed;
 	Zeus zeus;
 	Blade blade;
@@ -31,13 +27,11 @@ public class Game extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("GodOfWar.png");
-		fullscreen = false;
-		//Gdx.graphics.setDisplayMode(1280, 720, fullscreen);
 		rect = new Rectangle(650, 50, 120, 180);
 		speed = new Vector2(9, 9);
 		zeus = new Zeus();
 		bullet = new Bullet();
-		bullet.bullet = new Rectangle(500,50,zeus.zeus.getWidth(), 70);
+		bullet.bullet = new Rectangle(500,50,zeus.zeus.getWidth(), 60);
 		blade = new Blade();
 		healthBar = new HealthBar();
 		healthBar2 = new HealthBar();
@@ -48,16 +42,17 @@ public class Game extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 		bullet.bullet.setX(rect.getX());
 		bullet.bullet.setY(rect.getY());
 
 		if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
-			bullet.bullet.setX(bullet.speed.x -= 10);
+			bullet.bullet.setX(bullet.speed.x -= 15);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
-			bullet.bullet.setX(bullet.speed.x += 10);
+			bullet.bullet.setX(bullet.speed.x += 15);
 		}
-
+/*
 		if(rect.getX() <= zeus.zeus.getX()){
 			speed.x = 0;
 			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
@@ -66,10 +61,11 @@ public class Game extends ApplicationAdapter {
 				//speed.x++;
 			}
 		}
+*/
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 			if(speed.x == 9 && !changeOfSpeed){
-				speed.x *= 8;
-				speed.y *= 8;
+				speed.x *= 3;
+				speed.y *= 3;
 				changeOfSpeed = true;
 			}else if (speed.x != 9 && changeOfSpeed){
 				speed.x = 9;

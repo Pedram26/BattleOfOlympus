@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by ppourdavood on 2/10/2015.
  */
+
 public class Bullet {
     Vector2 speed;
     Texture img;
@@ -17,7 +16,7 @@ public class Bullet {
 
     public Bullet(){
         img = new Texture("bullet.jpg");
-        speed = new Vector2(7,7);
+        speed = new Vector2(10,10);
     }
 
     public void render(SpriteBatch batch){

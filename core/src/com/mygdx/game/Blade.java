@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,7 +16,7 @@ public class Blade {
     Texture img;
 
     public Blade(){
-        blade = new Rectangle(350, 350, 80, 120);
+        blade = new Rectangle(360, 350, 80, 120);
         img = new Texture("blade.png");
         speed = new Vector2(10 , 10);
     }

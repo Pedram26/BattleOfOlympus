@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by ppourdavood on 2/6/2015.
  */
+
 public class Zeus {
     public Rectangle zeus;
     Texture img;
@@ -20,9 +21,22 @@ public class Zeus {
         zeus = new Rectangle(50, 50, 110, 170);
         img = new Texture("zeus.jpg");
         speed = new Vector2(9, 9);
+        changeOfSpeed = false;
     }
 
     public void render(SpriteBatch batch) {
+
+        if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)){
+            if(speed.x == 9 && !changeOfSpeed){
+                speed.x *= 3;
+                speed.y *= 3;
+                changeOfSpeed = true;
+            }else if (speed.x != 9 && changeOfSpeed){
+                speed.x = 9;
+                speed.y = 9;
+                changeOfSpeed = false;
+            }
+        }
 
 
         if (zeus.getY() + zeus.getHeight() < Gdx.graphics.getHeight()) {
@@ -51,4 +65,3 @@ public class Zeus {
             batch.draw(img, zeus.getX(), zeus.getY(), zeus.getWidth(), zeus.getHeight());
         }
     }
-

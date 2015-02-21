@@ -1,13 +1,9 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
-import java.awt.*;
 
 /**
  * Created by ppourdavood on 2/20/2015.
@@ -19,8 +15,8 @@ public class HealthBar {
     Texture img2;
 
     public HealthBar(){
-        health = new Rectangle(50 , 350 , 220, 100);
-        health2 = new Rectangle(500, 350, 220, 100);
+        health = new Rectangle(40 , 350 , 220, 100);
+        health2 = new Rectangle(540, 350, 220, 100);
         img = new Texture("healthBarRegular.png");
         img2 = new Texture("healthBar.png");
     }
