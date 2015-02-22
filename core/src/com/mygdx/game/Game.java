@@ -22,6 +22,7 @@ public class Game extends ApplicationAdapter {
 	Bullet bullet;
 	HealthBar healthBar;
 	HealthBar healthBar2;
+	HealthBar redBar;
 
 	@Override
 	public void create () {
@@ -35,6 +36,7 @@ public class Game extends ApplicationAdapter {
 		blade = new Blade();
 		healthBar = new HealthBar();
 		healthBar2 = new HealthBar();
+		redBar = new HealthBar();
 
 	}
 
@@ -46,11 +48,15 @@ public class Game extends ApplicationAdapter {
 		bullet.bullet.setX(rect.getX());
 		bullet.bullet.setY(rect.getY());
 
+		if(bullet.bullet.getX() <= zeus.zeus.getX()){
+			redBar.redBar.width++;
+		}
+
 		if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
-			bullet.bullet.setX(bullet.speed.x -= 15);
+			bullet.bullet.setX(bullet.speed.x -= 13);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
-			bullet.bullet.setX(bullet.speed.x += 15);
+			bullet.bullet.setX(bullet.speed.x += 13);
 		}
 /*
 		if(rect.getX() <= zeus.zeus.getX()){
@@ -108,6 +114,7 @@ public class Game extends ApplicationAdapter {
 		blade.render(batch);
 		healthBar2.render(batch);
 		healthBar.render(batch);
+		redBar.render(batch);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		batch.end();
