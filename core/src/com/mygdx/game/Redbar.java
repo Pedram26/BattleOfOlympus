@@ -16,7 +16,7 @@ public class Redbar {
 
     public Redbar(){
         redBar = new Rectangle(91, 395, 0, 23);
-        redBar2 = new Rectangle(699, 395, 10, 23);
+        redBar2 = new Rectangle(709, 395, 0, 23);
         img = new Texture("redBar.png");
         img2 = new Texture("redBar.png");
     }

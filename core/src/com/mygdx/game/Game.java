@@ -24,6 +24,7 @@ public class Game extends ApplicationAdapter {
 	HealthBar healthBar2;
 	Redbar redBar;
 	Redbar redBar2;
+	Lightning bolt;
 
 	@Override
 	public void create () {
@@ -33,12 +34,14 @@ public class Game extends ApplicationAdapter {
 		speed = new Vector2(9, 9);
 		zeus = new Zeus();
 		bullet = new Bullet();
-		bullet.bullet = new Rectangle(500,50,zeus.zeus.getWidth(), 60);
+		bullet.bullet = new Rectangle(570,120,zeus.zeus.getWidth(), 60);
 		blade = new Blade();
 		healthBar = new HealthBar();
 		healthBar2 = new HealthBar();
 		redBar = new Redbar();
 		redBar2 = new Redbar();
+		bolt = new Lightning();
+		bolt.bolt = new Rectangle(125, 150, rect.getWidth(), 60);
 
 	}
 
@@ -51,18 +54,39 @@ public class Game extends ApplicationAdapter {
 //		bullet.bullet.setY(rect.getY());
 
 		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()){
-			redBar.redBar.width += 0.5;
+			redBar.redBar.width += 0.25;
 		}
-	if(bullet.bullet.getX() > 0) {
-		if (Gdx.input.isKeyPressed(Input.Keys.I)) {
-			bullet.bullet.setX(bullet.speed.x -= 13);
+
+		if(bolt.bolt.getX() + bolt.bolt.getWidth() >= rect.getX()){
+			redBar2.redBar2.width -= 0.25;
 		}
-	}
-	if(bullet.bullet.getX() + bullet.bullet.getWidth() < Gdx.graphics.getWidth()) {
-		if (Gdx.input.isKeyPressed(Input.Keys.P)) {
-			bullet.bullet.setX(bullet.speed.x += 13);
+
+		if(bullet.bullet.getX() + bullet.bullet.getWidth() < Gdx.graphics.getWidth()) {
+			if (Gdx.input.isKeyPressed(Input.Keys.P)) {
+				bullet.bullet.setX(bullet.speed.x += 13);
+			}
 		}
-	}
+
+		if(bullet.bullet.getX() > 0) {
+			if (Gdx.input.isKeyPressed(Input.Keys.I)) {
+				bullet.bullet.setX(bullet.speed.x -= 13);
+			}
+		}
+
+
+		if(bolt.bolt.getX() + bolt.bolt.getWidth() < Gdx.graphics.getWidth() ){
+			if(Gdx.input.isKeyPressed(Input.Keys.E)){
+				bolt.bolt.setX(bolt.speed.x += 13);
+			}
+		}
+
+		if(bolt.bolt.getX() > 0){
+			if(Gdx.input.isKeyPressed(Input.Keys.Q)){
+				bolt.bolt.setX(bolt.speed.x -= 13);
+			}
+		}
+
+
 
 /*
 		if(rect.getX() <= zeus.zeus.getX()){
@@ -118,6 +142,7 @@ public class Game extends ApplicationAdapter {
 		healthBar.render(batch);
 		redBar.render(batch);
 		redBar2.render(batch);
+		bolt.render(batch);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		batch.end();
