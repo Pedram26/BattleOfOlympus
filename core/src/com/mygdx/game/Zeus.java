@@ -19,7 +19,7 @@ public class Zeus {
 
     public Zeus(){
         zeus = new Rectangle(50, 50, 110, 170);
-        img = new Texture("zeus.jpg");
+        img = new Texture("zeus.png");
         speed = new Vector2(9, 9);
         changeOfSpeed = false;
     }

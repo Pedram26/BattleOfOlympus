@@ -22,7 +22,8 @@ public class Game extends ApplicationAdapter {
 	Bullet bullet;
 	HealthBar healthBar;
 	HealthBar healthBar2;
-	HealthBar redBar;
+	Redbar redBar;
+	Redbar redBar2;
 
 	@Override
 	public void create () {
@@ -36,7 +37,8 @@ public class Game extends ApplicationAdapter {
 		blade = new Blade();
 		healthBar = new HealthBar();
 		healthBar2 = new HealthBar();
-		redBar = new HealthBar();
+		redBar = new Redbar();
+		redBar2 = new Redbar();
 
 	}
 
@@ -45,19 +47,23 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		bullet.bullet.setX(rect.getX());
-		bullet.bullet.setY(rect.getY());
+//		bullet.bullet.setX(rect.getX());
+//		bullet.bullet.setY(rect.getY());
 
-		if(bullet.bullet.getX() <= zeus.zeus.getX()){
-			redBar.redBar.width++;
+		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()){
+			redBar.redBar.width += 0.5;
 		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
+	if(bullet.bullet.getX() > 0) {
+		if (Gdx.input.isKeyPressed(Input.Keys.I)) {
 			bullet.bullet.setX(bullet.speed.x -= 13);
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+	}
+	if(bullet.bullet.getX() + bullet.bullet.getWidth() < Gdx.graphics.getWidth()) {
+		if (Gdx.input.isKeyPressed(Input.Keys.P)) {
 			bullet.bullet.setX(bullet.speed.x += 13);
 		}
+	}
+
 /*
 		if(rect.getX() <= zeus.zeus.getX()){
 			speed.x = 0;
@@ -83,28 +89,24 @@ public class Game extends ApplicationAdapter {
 		if (rect.getY() + rect.getHeight() < Gdx.graphics.getHeight()) {
 			if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 				rect.setY(rect.getY() + speed.y);
-				//speed.y++;
 			}
 		}
 
 		if (rect.getY() > 0) {
 			if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 				rect.setY(rect.getY() - speed.y);
-				//speed.y--;
 			}
 		}
 
 		if (rect.getX() + rect.getWidth() < Gdx.graphics.getWidth()){
 			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 				rect.setX(rect.getX() + speed.x);
-				//speed.x++;
 			}
 		}
 
 		if(rect.getX() > 0) {
 			if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 				rect.setX(rect.getX() - speed.x);
-				//speed.x--;
 			}
 		}
 
@@ -115,6 +117,7 @@ public class Game extends ApplicationAdapter {
 		healthBar2.render(batch);
 		healthBar.render(batch);
 		redBar.render(batch);
+		redBar2.render(batch);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		batch.end();
