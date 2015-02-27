@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -25,6 +26,13 @@ public class Game extends ApplicationAdapter {
 	Redbar redBar;
 	Redbar redBar2;
 	Lightning bolt;
+	long startTime;
+	BitmapFont font;
+	BitmapFont fontZeus;
+	BitmapFont fontKratos;
+	String zeusName;
+	String kratosName;
+	Texture texture;
 
 	@Override
 	public void create () {
@@ -42,6 +50,12 @@ public class Game extends ApplicationAdapter {
 		redBar2 = new Redbar();
 		bolt = new Lightning();
 		bolt.bolt = new Rectangle(125, 150, rect.getWidth(), 60);
+		startTime = System.currentTimeMillis();
+		font = new BitmapFont(false);
+		fontZeus = new BitmapFont(false);
+		fontKratos = new BitmapFont(false);
+		zeusName = ("Zeus");
+		kratosName = ("Kratos");
 
 	}
 
@@ -50,14 +64,20 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		//texture = new Texture(Gdx.files.internal("badlogic.jpg"));
+
+		System.out.println(redBar.redBar.width);
+		System.out.println(redBar2.redBar2.width);
+
 //		bullet.bullet.setX(rect.getX());
 //		bullet.bullet.setY(rect.getY());
 
-		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()){
+		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()&& redBar.redBar.width < 154){
 			redBar.redBar.width += 0.25;
+
 		}
 
-		if(bolt.bolt.getX() + bolt.bolt.getWidth() >= rect.getX()){
+		if(bolt.bolt.getX() + bolt.bolt.getWidth() >= rect.getX() && redBar2.redBar2.width > -154){
 			redBar2.redBar2.width -= 0.25;
 		}
 
@@ -84,6 +104,14 @@ public class Game extends ApplicationAdapter {
 			if(Gdx.input.isKeyPressed(Input.Keys.Q)){
 				bolt.bolt.setX(bolt.speed.x -= 13);
 			}
+		}
+
+		long currentTime = System.currentTimeMillis();
+		long secondsPassed = (currentTime - startTime) / 1000;
+		long timerValue = 100 - secondsPassed;
+
+		if( timerValue <= 0 ){
+			timerValue = 0;
 		}
 
 
@@ -135,6 +163,7 @@ public class Game extends ApplicationAdapter {
 		}
 
 		batch.begin();
+		//batch.draw(texture, 0, 0);
 		bullet.render(batch);
 		zeus.render(batch);
 		blade.render(batch);
@@ -143,6 +172,9 @@ public class Game extends ApplicationAdapter {
 		redBar.render(batch);
 		redBar2.render(batch);
 		bolt.render(batch);
+		font.draw(batch, Long.toString(timerValue), 387, 470);
+		fontZeus.draw(batch, zeusName, 130, 380);
+		fontKratos.draw(batch, kratosName, 635, 380);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		batch.end();

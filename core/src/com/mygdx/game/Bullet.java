@@ -15,7 +15,7 @@ public class Bullet {
     public Rectangle bullet;
 
     public Bullet(){
-        img = new Texture("bullet.jpg");
+        img = new Texture("bullet.png");
         speed = new Vector2(10,10);
     }
 

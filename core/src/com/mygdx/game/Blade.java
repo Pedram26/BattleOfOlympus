@@ -16,7 +16,7 @@ public class Blade {
     Texture img;
 
     public Blade(){
-        blade = new Rectangle(360, 350, 80, 120);
+        blade = new Rectangle(360, 320, 80, 120);
         img = new Texture("blade.png");
         speed = new Vector2(10 , 10);
     }
