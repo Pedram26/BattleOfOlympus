@@ -11,7 +11,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
-
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
@@ -33,6 +32,9 @@ public class Game extends ApplicationAdapter {
 	String zeusName;
 	String kratosName;
 	Texture texture;
+	long currentTime;
+	long secondsPassed;
+	long timerValue;
 
 	@Override
 	public void create () {
@@ -56,24 +58,28 @@ public class Game extends ApplicationAdapter {
 		fontKratos = new BitmapFont(false);
 		zeusName = ("Zeus");
 		kratosName = ("Kratos");
-
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(1, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		//texture = new Texture(Gdx.files.internal("badlogic.jpg"));
+
+		//texture = new Texture(Gdx.files.internal("olympus3.jpg"));
 
 		System.out.println(redBar.redBar.width);
 		System.out.println(redBar2.redBar2.width);
+
 
 //		bullet.bullet.setX(rect.getX());
 //		bullet.bullet.setY(rect.getY());
 
 		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()&& redBar.redBar.width < 154){
 			redBar.redBar.width += 0.25;
+		}
+
+		if(redBar.redBar.width >= 154){
 
 		}
 
@@ -106,14 +112,9 @@ public class Game extends ApplicationAdapter {
 			}
 		}
 
-		long currentTime = System.currentTimeMillis();
-		long secondsPassed = (currentTime - startTime) / 1000;
-		long timerValue = 100 - secondsPassed;
-
-		if( timerValue <= 0 ){
-			timerValue = 0;
-		}
-
+		currentTime = System.currentTimeMillis();
+		secondsPassed = (currentTime - startTime) / 1000;
+		timerValue = 100 - secondsPassed;
 
 
 /*
@@ -126,6 +127,7 @@ public class Game extends ApplicationAdapter {
 			}
 		}
 */
+
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 			if(speed.x == 9 && !changeOfSpeed){
 				speed.x *= 3;
@@ -165,6 +167,7 @@ public class Game extends ApplicationAdapter {
 		batch.begin();
 		//batch.draw(texture, 0, 0);
 		bullet.render(batch);
+		System.out.println("x1" + zeus.zeus.getX() + "y2" + zeus.zeus.getY());
 		zeus.render(batch);
 		blade.render(batch);
 		healthBar2.render(batch);
@@ -172,7 +175,7 @@ public class Game extends ApplicationAdapter {
 		redBar.render(batch);
 		redBar2.render(batch);
 		bolt.render(batch);
-		font.draw(batch, Long.toString(timerValue), 387, 470);
+		font.draw(batch, Long.toString(timerValue), 388, 467);
 		fontZeus.draw(batch, zeusName, 130, 380);
 		fontKratos.draw(batch, kratosName, 635, 380);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
