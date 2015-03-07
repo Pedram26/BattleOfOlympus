@@ -35,6 +35,10 @@ public class Game extends ApplicationAdapter {
 	long currentTime;
 	long secondsPassed;
 	long timerValue;
+	BitmapFont fontVictoryZ;
+	BitmapFont fontVictoryK;
+	String zeusVictory;
+	String kratosVictory;
 
 	@Override
 	public void create () {
@@ -58,11 +62,15 @@ public class Game extends ApplicationAdapter {
 		fontKratos = new BitmapFont(false);
 		zeusName = ("Zeus");
 		kratosName = ("Kratos");
+		fontVictoryZ = new BitmapFont(false);
+		fontVictoryK = new BitmapFont(false);
+		zeusVictory = ("ZEUS WINS");
+		kratosVictory = ("KRATOS WINS");
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 0);
+		Gdx.gl.glClearColor(0, 1, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
@@ -76,15 +84,11 @@ public class Game extends ApplicationAdapter {
 //		bullet.bullet.setY(rect.getY());
 
 		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()&& redBar.redBar.width < 154){
-			redBar.redBar.width += 0.25;
-		}
-
-		if(redBar.redBar.width >= 154){
-
+			redBar.redBar.width += .25;
 		}
 
 		if(bolt.bolt.getX() + bolt.bolt.getWidth() >= rect.getX() && redBar2.redBar2.width > -154){
-			redBar2.redBar2.width -= 0.25;
+			redBar2.redBar2.width -= .25;
 		}
 
 		if(bullet.bullet.getX() + bullet.bullet.getWidth() < Gdx.graphics.getWidth()) {
@@ -114,7 +118,19 @@ public class Game extends ApplicationAdapter {
 
 		currentTime = System.currentTimeMillis();
 		secondsPassed = (currentTime - startTime) / 1000;
-		timerValue = 100 - secondsPassed;
+		timerValue = 60 - secondsPassed;
+
+
+		if(redBar.redBar.width >= 154){
+			timerValue = 0;
+		}
+
+		if(redBar2.redBar2.width <= -154){
+			timerValue = 0;
+		}
+
+
+
 
 
 /*
@@ -180,6 +196,17 @@ public class Game extends ApplicationAdapter {
 		fontKratos.draw(batch, kratosName, 635, 380);
 		System.out.println("X:" + bullet.bullet.getX() + "Y:" + bullet.bullet.getY());
 		batch.draw(img, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+
+
+		if(redBar.redBar.width >= 154){
+			fontVictoryK.draw(batch, kratosVictory, 350, 310);
+		}
+
+		if(redBar2.redBar2.width <= -154){
+			fontVictoryZ.draw(batch, zeusVictory, 350, 310);
+		}
+
+
 		batch.end();
 	}
 }
