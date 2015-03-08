@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
@@ -120,6 +119,10 @@ public class Game extends ApplicationAdapter {
 		secondsPassed = (currentTime - startTime) / 1000;
 		timerValue = 60 - secondsPassed;
 
+		if(timerValue <=0){
+			timerValue = 0;
+		}
+
 
 		if(redBar.redBar.width >= 154){
 			timerValue = 0;
@@ -128,8 +131,6 @@ public class Game extends ApplicationAdapter {
 		if(redBar2.redBar2.width <= -154){
 			timerValue = 0;
 		}
-
-
 
 
 
@@ -205,6 +206,7 @@ public class Game extends ApplicationAdapter {
 		if(redBar2.redBar2.width <= -154){
 			fontVictoryZ.draw(batch, zeusVictory, 350, 310);
 		}
+		
 
 
 		batch.end();
