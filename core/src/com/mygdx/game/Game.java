@@ -47,7 +47,7 @@ public class Game extends ApplicationAdapter {
 		speed = new Vector2(9, 9);
 		zeus = new Zeus();
 		bullet = new Bullet();
-		bullet.bullet = new Rectangle(570,120,zeus.zeus.getWidth(), 60);
+		bullet.bullet = new Rectangle(570,120,90, 50);
 		blade = new Blade();
 		healthBar = new HealthBar();
 		healthBar2 = new HealthBar();
@@ -82,11 +82,11 @@ public class Game extends ApplicationAdapter {
 //		bullet.bullet.setX(rect.getX());
 //		bullet.bullet.setY(rect.getY());
 
-		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth()&& redBar.redBar.width < 154){
+		if(bullet.bullet.getX() <= zeus.zeus.getX() + zeus.zeus.getWidth() && redBar.redBar.width < 154 && timerValue > 0){
 			redBar.redBar.width += .25;
 		}
 
-		if(bolt.bolt.getX() + bolt.bolt.getWidth() >= rect.getX() && redBar2.redBar2.width > -154){
+		if(bolt.bolt.getX() + bolt.bolt.getWidth() >= rect.getX() && redBar2.redBar2.width > -154 && timerValue > 0){
 			redBar2.redBar2.width -= .25;
 		}
 
@@ -123,7 +123,6 @@ public class Game extends ApplicationAdapter {
 			timerValue = 0;
 		}
 
-
 		if(redBar.redBar.width >= 154){
 			timerValue = 0;
 		}
@@ -135,7 +134,10 @@ public class Game extends ApplicationAdapter {
 		if(timerValue <= 0){
 			speed.x = 0;
 			speed.y = 0;
+			zeus.speed.x = 0;
+			zeus.zeus.y = 0;
 		}
+
 
 
 /*

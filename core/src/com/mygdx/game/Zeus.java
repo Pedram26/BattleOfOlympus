@@ -39,6 +39,8 @@ public class Zeus {
         }
 
 
+
+
         if (zeus.getY() + zeus.getHeight() < Gdx.graphics.getHeight()) {
             if (Gdx.input.isKeyPressed(Input.Keys.W)) {
                 zeus.setY(zeus.getY() + speed.y);
@@ -62,6 +64,7 @@ public class Zeus {
                 zeus.setX(zeus.getX() - speed.x);
             }
         }
+
 
             batch.draw(img, zeus.getX(), zeus.getY(), zeus.getWidth(), zeus.getHeight());
         }
