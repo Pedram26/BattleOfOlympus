@@ -11,33 +11,33 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Game extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	Rectangle rect;
-	Vector2 speed;
-	boolean changeOfSpeed;
-	Zeus zeus;
-	Blade blade;
-	Bullet bullet;
-	HealthBar healthBar;
-	HealthBar healthBar2;
-	Redbar redBar;
-	Redbar redBar2;
-	Lightning bolt;
-	long startTime;
-	BitmapFont font;
-	BitmapFont fontZeus;
-	BitmapFont fontKratos;
-	String zeusName;
-	String kratosName;
-	Texture texture;
-	long currentTime;
-	long secondsPassed;
-	long timerValue;
-	BitmapFont fontVictoryZ;
-	BitmapFont fontVictoryK;
-	String zeusVictory;
-	String kratosVictory;
+		SpriteBatch batch;
+		Texture img;
+		Rectangle rect;
+		Vector2 speed;
+		boolean changeOfSpeed;
+		Zeus zeus;
+		Blade blade;
+		Bullet bullet;
+		HealthBar healthBar;
+		HealthBar healthBar2;
+		Redbar redBar;
+		Redbar redBar2;
+		Lightning bolt;
+		long startTime;
+		BitmapFont font;
+		BitmapFont fontZeus;
+		BitmapFont fontKratos;
+		String zeusName;
+		String kratosName;
+		Texture texture;
+		long currentTime;
+		long secondsPassed;
+		long timerValue;
+		BitmapFont fontVictoryZ;
+		BitmapFont fontVictoryK;
+		String zeusVictory;
+		String kratosVictory;
 
 	@Override
 	public void create () {
@@ -117,7 +117,7 @@ public class Game extends ApplicationAdapter {
 
 		currentTime = System.currentTimeMillis();
 		secondsPassed = (currentTime - startTime) / 1000;
-		timerValue = 60 - secondsPassed;
+		timerValue = 5 - secondsPassed;
 
 		if(timerValue <=0){
 			timerValue = 0;
@@ -132,6 +132,10 @@ public class Game extends ApplicationAdapter {
 			timerValue = 0;
 		}
 
+		if(timerValue <= 0){
+			speed.x = 0;
+			speed.y = 0;
+		}
 
 
 /*
@@ -206,7 +210,6 @@ public class Game extends ApplicationAdapter {
 		if(redBar2.redBar2.width <= -154){
 			fontVictoryZ.draw(batch, zeusVictory, 350, 310);
 		}
-		
 
 
 		batch.end();

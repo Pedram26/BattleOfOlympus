@@ -62,6 +62,7 @@ public class Zeus {
                 zeus.setX(zeus.getX() - speed.x);
             }
         }
+
             batch.draw(img, zeus.getX(), zeus.getY(), zeus.getWidth(), zeus.getHeight());
         }
     }
