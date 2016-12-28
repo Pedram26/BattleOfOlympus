@@ -1,1 +1,1 @@
-# SimpleGame
+# Battle of Olympus
